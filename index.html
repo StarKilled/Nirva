@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bajo el mismo cielo — para Nirvana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night-deep:#0e1424;
+    --night:#161f36;
+    --night-light:#233052;
+    --gold:#d9a94f;
+    --gold-soft:#e8c98a;
+    --cream:#f3ead9;
+    --rose:#c98a80;
+    --line: rgba(243,234,217,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background: linear-gradient(180deg, var(--night-deep) 0%, var(--night) 45%, var(--night-light) 100%);
+    color: var(--cream);
+    font-family:'Work Sans', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  .stars{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+  }
+  .stars span{
+    position:absolute;
+    width:2px; height:2px;
+    background: var(--cream);
+    border-radius:50%;
+    opacity:.6;
+    animation: twinkle 4s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{opacity:.15;}
+    50%{opacity:.9;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .stars span{animation:none; opacity:.4;}
+    .reveal{transition:none !important; opacity:1 !important; transform:none !important;}
+  }
+
+  main{position:relative; z-index:1;}
+
+  section{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding: 6rem 1.5rem;
+    text-align:center;
+  }
+
+  .hero h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    font-size: clamp(2.4rem, 7vw, 4.6rem);
+    letter-spacing:.01em;
+    margin:0 0 .6rem 0;
+    color: var(--cream);
+  }
+  .hero p.for{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.3rem;
+    color: var(--gold-soft);
+    margin:0;
+  }
+  .scroll-hint{
+    margin-top:4rem;
+    font-size:.75rem;
+    letter-spacing:.08em;
+    color: var(--rose);
+    opacity:.8;
+  }
+  .scroll-hint::after{
+    content:"↓";
+    display:block;
+    margin-top:.4rem;
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(6px);}
+  }
+
+  .letter{
+    max-width: 620px;
+    text-align:left;
+  }
+  .letter .kicker{
+    font-size:.8rem;
+    color: var(--gold);
+    margin-bottom:1.5rem;
+    letter-spacing:.03em;
+  }
+  .letter p{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.5rem;
+    line-height:1.65;
+    font-weight:400;
+    color: var(--cream);
+    margin: 0 0 1.7rem 0;
+  }
+  .reveal{
+    opacity:0;
+    transform: translateY(18px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  .reveal.in{
+    opacity:1;
+    transform:none;
+  }
+
+  .distance{
+    max-width:640px;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding: 3.5rem 0;
+  }
+  .distance h2{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:500;
+    font-style:italic;
+    font-size:1.9rem;
+    margin: 0 0 2rem 0;
+    color: var(--gold-soft);
+  }
+  .cities{
+    display:flex;
+    gap: 2.5rem;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-bottom:2rem;
+  }
+  .city{
+    min-width:150px;
+  }
+  .city .name{
+    font-size:.78rem;
+    letter-spacing:.05em;
+    color: var(--rose);
+    margin-bottom:.5rem;
+  }
+  .city .time{
+    font-family:'Cormorant Garamond', serif;
+    font-size:2.1rem;
+    color: var(--cream);
+  }
+  .distance-text{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.35rem;
+    line-height:1.6;
+    color: var(--cream);
+    text-align:left;
+    max-width:620px;
+    margin: 0 auto;
+  }
+
+  .closing{
+    max-width:560px;
+  }
+  .flower{
+    width:110px; height:130px;
+    margin: 0 auto 2.5rem auto;
+  }
+  .petal{
+    transform-origin: 55px 95px;
+    animation: bloom 2.6s ease-out forwards;
+    opacity:0;
+  }
+  @keyframes bloom{
+    0%{opacity:0; transform: scale(.2) translateY(6px);}
+    60%{opacity:1;}
+    100%{opacity:1; transform: scale(1) translateY(0);}
+  }
+  .closing p{
+    font-family:'Cormorant Garamond', serif;
+    font-size:1.4rem;
+    line-height:1.6;
+    margin: 0 0 1.4rem 0;
+  }
+  .signature{
+    margin-top:2.5rem;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:1.25rem;
+    color: var(--gold-soft);
+  }
+  footer{
+    text-align:center;
+    padding: 2.5rem 1rem 3rem;
+    font-size:.72rem;
+    color: rgba(243,234,217,.35);
+    position:relative; z-index:1;
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<main>
+
+  <section class="hero">
+    <h1>Bajo el mismo cielo</h1>
+    <p class="for">para Nirvana</p>
+    <div class="scroll-hint">desliza</div>
+  </section>
+
+ <section class="letter">
+  <p class="kicker reveal">Granada, España</p>
+
+  <p class="reveal">
+    Nirvana, nuevamente que quiero escribirte esto y nunca encontraba bien las palabras.
+    Se que ya le mande una carta pero hoy dia me di cuenta.
+    Puede que todavía no consiga decir todo exactamente como lo siento, pero quiero intentarlo
+    una vez más, porque hay cosas que llevo dentro y soy muy malo expresando.
+  </p>
+
+  <p class="reveal">
+    El mejor loro del mundo pero lo repetire de nuevo. Sé que cometí muchos errores. Hubo momentos en los que no fui la persona que debí ser
+    contigo, y no te escribo para que los olvides ni para justificarme. Solo quiero que sepas
+    que los reconozco. Perdóname por tantas cosas, por las veces que pude haber hecho las cosas
+    mejor, por haber sido demasiado intenso, por mi manera de querer y, especialmente, por
+    haber sido tan pervertido contigo. Sé que muchas veces fui así y entiendo que quizá hubo
+    momentos en los que eso pudo hacerte sentir incómoda o simplemente cansarte. Lo siento
+    sinceramente.
+  </p>
+
+  <p class="reveal">
+    Después de cinco años, no puedo fingir que todo lo que siento desapareció. Te amo de la
+    misma manera que te he amado durante todo este tiempo. Quizá las cosas hayan cambiado,
+    quizá nosotros hayamos cambiado, pero lo que sentí por ti fue real y todavía lo es.
+  </p>
+
+  <p class="reveal">
+    Pero también he aprendido que amar a alguien no significa intentar retenerlo a cualquier
+    precio. A veces amar también significa aceptar que la persona que amas puede encontrar su
+    felicidad en otro lugar, incluso si ese lugar ya no es contigo. Y aunque duela, si algún día
+    otra persona consigue hacerte más feliz que yo, de corazón deseo que así sea. Porque si
+    realmente te amo, también quiero verte feliz, aunque esa felicidad ya no sea a mi lado.
+  </p>
+
+  <p class="reveal">
+    No sé si hay alguien más en tu vida. Y no quiero imaginar cosas ni preguntarte para
+    presionarte. Pero si existe otra persona, deseo sinceramente que te ame muchísimo, que te
+    cuide, que te respete, que te valore y que nunca te haga sentir que no eres suficiente.
+    Si esa persona ocupa ahora el lugar que alguna vez soñé ocupar yo, lo voy a entender.
+  </p>
+
+  <p class="reveal">
+    Y si ya no quieres seguir escribiéndome, también lo voy a entender. No quiero que me hables
+    por compromiso, por pena o porque sientas que tienes que hacerlo. Si algún día decides que
+    ya no quieres que sigamos hablando, solo dímelo. No te voy a reclamar ni te voy a pedir
+    explicaciones. Solo necesito saberlo para poder dejar de estar pendiente, dejar de esperar
+    un mensaje y aprender, poco a poco, a seguir adelante.
+  </p>
+
+  <p class="reveal">
+    Desde aquí, en Granada, muchas veces pensé en el océano que nos separa y en esas siete horas
+    de diferencia que hicieron que, mientras a mí ya me caía la noche, para ti todavía fuera
+    tarde. Casi nueve mil kilómetros entre nosotros y, aun así, hubo momentos en los que sentí
+    que estabas muy cerca. Muchas veces tuve esas ganas de volver a verte, de viajar hasta allí y poder mirar tus ojos otra vez.
+  </p>
+
+  <p class="reveal">
+    A veces miraba el cielo y pensaba que, aunque estuviéramos tan lejos, los dos seguíamos
+    viendo las mismas estrellas. Puede parecer una tontería, pero eran esas pequeñas cosas las
+    que me hacían sentir que la distancia no podía borrar todo lo que habíamos vivido.
+  </p>
+
+  <p class="reveal">
+    También quiero que sepas que me alegra muchísimo saber que pronto te vas a graduar.
+    De verdad estoy feliz por ti. Quiero que disfrutes ese momento, que te sientas orgullosa
+    de todo lo que has conseguido y que recuerdes todo el esfuerzo que hiciste para llegar
+    hasta ahí. Ojalá esta nueva etapa de tu vida esté llena de oportunidades, sueños y
+    momentos que te hagan feliz.
+  </p>
+</section>
+
+<section class="distance">
+  <div class="reveal">
+    <h2>Un mar de por medio</h2>
+
+```
+<div class="cities">
+  <div class="city">
+    <div class="name">GRANADA</div>
+    <div class="time" id="clock-es">--:--</div>
+  </div>
+
+  <div class="city">
+    <div class="name">PORTOVIEJO</div>
+    <div class="time" id="clock-ec">--:--</div>
+  </div>
+</div>
+
+<p class="distance-text">
+  Casi nueve mil kilómetros y siete horas de diferencia. Cuando aquí amanece, allá todavía
+  es de noche. Cuando aquí llega la noche, allá todavía queda parte del día. Y, sin embargo,
+  durante mucho tiempo esa distancia nunca fue suficiente para hacerme sentir que estabas
+  realmente lejos.
+</p>
+```
+
+  </div>
+</section>
+
+<section class="closing">
+  <svg class="flower" viewBox="0 0 110 130" xmlns="http://www.w3.org/2000/svg">
+    <g>
+      <ellipse class="petal" cx="55" cy="70" rx="14" ry="24" fill="#d9a94f" style="animation-delay:.1s"/>
+      <ellipse class="petal" cx="55" cy="70" rx="14" ry="24" fill="#e0b563" transform="rotate(60 55 70)" style="animation-delay:.25s"/>
+      <ellipse class="petal" cx="55" cy="70" rx="14" ry="24" fill="#e0b563" transform="rotate(120 55 70)" style="animation-delay:.4s"/>
+      <ellipse class="petal" cx="55" cy="70" rx="14" ry="24" fill="#d9a94f" transform="rotate(180 55 70)" style="animation-delay:.55s"/>
+      <ellipse class="petal" cx="55" cy="70" rx="14" ry="24" fill="#e0b563" transform="rotate(240 55 70)" style="animation-delay:.7s"/>
+      <ellipse class="petal" cx="55" cy="70" rx="14" ry="24" fill="#e0b563" transform="rotate(300 55 70)" style="animation-delay:.85s"/>
+      <circle class="petal" cx="55" cy="70" r="9" fill="#f3ead9" style="animation-delay:1s"/>
+      <line x1="55" y1="95" x2="55" y2="128" stroke="#7a8f5c" stroke-width="3" class="petal" style="animation-delay:.9s"/>
+    </g>
+  </svg>
+
+  <p class="reveal">
+    Quiero que sepas también algo que quizá nunca te dije de la manera correcta: gracias.
+    Gracias por haber estado en mi vida durante estos cinco años. Gracias por las tardes, por
+    las risas, por las conversaciones, por los momentos bonitos y también por los momentos
+    difíciles. Gracias incluso por las cosas que no salieron como esperábamos, porque de una
+    manera u otra todas ellas me hicieron aprender.
+  </p>
+
+  <p class="reveal">
+    Gracias a ti también soñé muchas cosas. Hubo momentos en los que quise esforzarme más de
+    la cuenta, mejorar, conseguir cosas y construir un futuro que alguna vez imaginé contigo.
+    Quizá muchas de esas cosas no llegaron a suceder como las imaginaba, pero no me arrepiento
+    de haberlas soñado.
+  </p>
+
+  <p class="reveal">
+    Me quedo con la felicidad de haber conocido a una persona que significó tanto para mí.
+    No quiero recordar estos cinco años solamente por cómo terminaron o por las cosas que hice
+    mal. También quiero recordar todo lo bonito, todo lo que me hiciste sentir y todas las veces
+    que conseguiste sacarme una sonrisa.
+  </p>
+
+  <p class="reveal">
+    Perdóname por todo lo que hice mal. Perdóname por haber sido demasiado intenso algunas
+    veces, por insistir cuando quizá necesitabas espacio, por mi forma de querer y por todas
+    esas cosas que pudieron terminar cansándote. Y perdóname especialmente por haber sido tan
+    pervertido contigo. Creo que es una parte de mí que muchas veces no supe controlar, pero
+    eso no significa que quiera justificarlo. Sé que pude haberlo hecho mejor.
+  </p>
+
+  <p class="reveal">
+    A pesar de todo, nunca quiero que pienses que todo aquello fue mentira. Detrás de mis
+    errores, de mis inseguridades, de mis momentos de intensidad y de todas las cosas que hice
+    mal, hubo un sentimiento que para mí siempre fue verdadero.
+  </p>
+
+ <p class="reveal">
+  Te amo, Nirvana. Y probablemente una parte de mí seguirá haciéndolo durante mucho tiempo.
+  No puedo borrar cinco años de mi vida ni hacer como si todo aquello nunca hubiera existido.
+  Pero también estoy aprendiendo que amar no es solamente querer que alguien esté contigo.
+  Amar también es querer que esa persona sea feliz, incluso cuando su felicidad puede estar
+  lejos de ti.
+</p>
+
+<p class="reveal">
+  Por eso, si algún día encuentras a alguien que te haga más feliz, que te cuide, que te valore
+  y que consiga darte todo aquello que yo no supe darte, de corazón espero que seas feliz con
+  esa persona. Puede que me duela, pero si realmente te amo, también tengo que ser capaz de
+  alegrarme por tu felicidad.
+</p>
+
+<p class="reveal">
+  No te escribo esto para pedirte que vuelvas. Tampoco para hacerte sentir culpable ni para
+  retenerte. Te escribo porque después de cinco años no quería quedarme con todas estas
+  palabras dentro de mí. Quería que supieras que, a pesar de mis errores, todo lo que sentí
+  por ti fue real.
+</p>
+
+<p class="reveal">
+  Y si algún día decides que ya no quieres hablar conmigo, por favor, dímelo. No voy a
+  reclamarte ni voy a enfadarme. Lo aceptaré, aunque seguramente me duela. Solo necesito
+  saberlo para dejar de estar pendiente, dejar de esperar un mensaje y empezar a aceptar
+  que quizá nuestros caminos ya tomaron direcciones diferentes.
+</p>
+
+<p class="reveal">
+  Gracias por estos cinco años, Nirvana. Gracias por todo lo que vivimos, por las cosas que
+  soñé contigo, por las veces que me hiciste sonreír y por todas las veces que, gracias a ti,
+  quise esforzarme y ser una mejor persona.
+</p>
+
+<p class="reveal">
+  Y sobre todo, gracias por haber sido parte de mi vida. No sé qué nos deparará el futuro,
+  pero sí sé que siempre voy a recordar con cariño la persona que fuiste para mí.
+</p>
+
+<p class="reveal">
+  Ojalá disfrutes muchísimo tu graduación. Ojalá te sientas orgullosa de todo lo que has
+  conseguido y de todo lo que todavía te queda por conseguir. Deseo que la vida te dé mucho
+  amor, muchas oportunidades y muchísimas razones para sonreír.
+</p>
+
+<p class="reveal">
+  Te amo, Nirvana. Y aunque algún día tenga que aprender a hacerlo desde lejos, siempre voy
+  a querer que seas feliz.
+</p>
+
+<p class="reveal">
+  Pase lo que pase entre nosotros, siempre voy a desearte lo mejor.
+</p>
+
+<p class="signature reveal">
+  Con todo mi cariño, siempre.
+</p>
+
+
+
+<footer>hecho con cariño desde España</footer>
+
+<script>
+  // estrellas de fondo
+  const starsContainer = document.getElementById('stars');
+  const starCount = window.innerWidth < 600 ? 45 : 90;
+  for (let i = 0; i < starCount; i++) {
+    const s = document.createElement('span');
+    s.style.left = Math.random() * 100 + 'vw';
+    s.style.top = Math.random() * 100 + 'vh';
+    s.style.animationDelay = (Math.random() * 4) + 's';
+    s.style.width = s.style.height = (Math.random() < .15 ? 3 : 2) + 'px';
+    starsContainer.appendChild(s);
+  }
+
+  // revelado al hacer scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  revealEls.forEach(el => io.observe(el));
+
+  // reloj Madrid / Guayaquil
+  function updateClocks() {
+    try {
+      const now = new Date();
+      const es = new Intl.DateTimeFormat('es-ES', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Madrid' }).format(now);
+      const ec = new Intl.DateTimeFormat('es-EC', { hour: '2-digit', minute: '2-digit', timeZone: 'America/Guayaquil' }).format(now);
+      document.getElementById('clock-es').textContent = es;
+      document.getElementById('clock-ec').textContent = ec;
+    } catch (e) { /* silencioso */ }
+  }
+  updateClocks();
+  setInterval(updateClocks, 30000);
+</script>
+
+</body>
+</html>
